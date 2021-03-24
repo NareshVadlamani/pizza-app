@@ -7,7 +7,7 @@ import { ReactComponent as IconHome } from "../icons/home.svg";
 export function TopBar(props) {
   const history = useHistory();
   return (
-    <Flex py="14px" position="fixed" width="100%" top={0} bg="#fff">
+    <Flex py="14px" position="fixed" width="100%" top={0} bg="#fff" zIndex="1">
       <Box flex={1} onClick={() => history.goBack()}>
         <IconBack />
       </Box>

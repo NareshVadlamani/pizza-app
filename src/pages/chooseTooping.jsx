@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "@emotion/styled";
-import { Footer, TopArea, TopBar } from "../components/appBg";
-import { Box, Button, Flex, Img, Text } from "../components/utils";
+import { Footer, TopArea } from "../components/appBg";
+import { Box, Flex, Text } from "../components/utils";
 import PizzaTopImg from "../components/pizzaTopImg";
-import {
-  PizzaCrust,
-  PizzaSizeCard,
-  PizzaTooping,
-} from "../components/pizzaSizeCard";
+import { PizzaTooping } from "../components/pizzaSizeCard";
 import { useContextInfo } from "../components/context";
 import ToopingCard from "../components/toopingCard";
 
@@ -21,7 +17,6 @@ const H1 = styled.h1`
 
 export default function ChooseCrust(props) {
   const history = useHistory();
-
   const [crustSize, setCrustSize] = useState("+$2.00");
   const { pizzaSize, crust } = useContextInfo();
   const [total, setTotal] = useState();
@@ -78,7 +73,7 @@ export default function ChooseCrust(props) {
           </Box>
         </TopArea>
         <Box height="200px">
-          <PizzaTopImg size={0} setSize={(size) => setCrustSize(size)} />
+          <PizzaTopImg size={0} />
         </Box>
         <Box position="relative">
           <Box position="" p="10px 20px">

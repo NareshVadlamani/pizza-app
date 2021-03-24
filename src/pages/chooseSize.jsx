@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
-import { Footer, TopArea, TopBar } from "../components/appBg";
-import { Box, Button, Flex, Img } from "../components/utils";
+import { Footer, TopArea } from "../components/appBg";
+import { Box, Flex } from "../components/utils";
 import PizzaTopImg from "../components/pizzaTopImg";
-import { PizzaCrust, PizzaSizeCard } from "../components/pizzaSizeCard";
+import { PizzaSizeCard } from "../components/pizzaSizeCard";
 import { useContextInfo } from "../components/context";
-
-const pizza = require("../images/pizza.png");
-// const pizza = require("../images/profile.png");
 
 const H1 = styled.h1`
   margin: 0;
@@ -68,8 +65,8 @@ export default function ChooseSize(props) {
             size, crust, toppings
           </Box>
         </TopArea>
-        <Box height="200px">
-          <PizzaTopImg size={size} />
+        <Box height="200px" top={-95}>
+          <PizzaTopImg size={`${size}"`} />
         </Box>
         <Box position="" p="10px 20px">
           <PizzaSizeCard />

@@ -1,7 +1,5 @@
 import React, { useContext, createContext } from "react";
-
 const data = {};
-
 export const PizzaContext = createContext({ data });
 
 export function useContextInfo() {

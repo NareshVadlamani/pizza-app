@@ -1,6 +1,5 @@
 import React from "react";
-import { Box, Flex, Button, Text, Img } from "./utils";
-import { ReactComponent as IconTick } from "../icons/tick.svg";
+import { Box, Flex, Img } from "./utils";
 
 const mushRoom = require("../images/mushrooms.png");
 const pepperoni = require("../images/pepperoni.png");

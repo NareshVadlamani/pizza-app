@@ -77,6 +77,7 @@ export default function PizzaTopImg(props) {
                 background: "#DADAE5",
                 backdropFilter: "blur(4px)",
                 borderRadius: "10px",
+                color: "#A0A8CC",
               }}
             >
               {size}
@@ -112,7 +113,6 @@ export function HalfPizzaImg(props) {
     <Box
       position="absolute"
       top="150px"
-      // width="100%"
       right={0}
       bg="#0000"
       borderBottom={size ? "0.5px solid #DADAE5" : "0px"}
@@ -144,16 +144,6 @@ export function HalfPizzaImg(props) {
               }}
             ></Img>
           </Box>
-          {/* <Box flex={1} borderRadius="50%">
-            <Img
-              width="100%"
-              src={halfPizza}
-              style={{
-                filter:
-                  "drop-shadow(0px 20px 50px rgba(255, 126, 32, 0.2)), drop-shadow(0px 4px 8px rgba(109, 110, 156, 0.4))",
-              }}
-            ></Img>
-          </Box> */}
         </Flex>
       </Box>
     </Box>

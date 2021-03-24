@@ -1,11 +1,7 @@
 import styled from "@emotion/styled";
-import React, { useState } from "react";
+import React from "react";
 import { useContextInfo } from "./context";
-import { Box, Flex, Button, Text, Img } from "./utils";
-import { ReactComponent as IconTick } from "../icons/tick.svg";
-
-const mushRoom = require("../images/mushrooms.png");
-const pepperoni = require("../images/pepperoni.png");
+import { Box, Flex, Button, Text } from "./utils";
 
 const StyeledBtn = styled(Button)`
   background: ${(props) =>
@@ -90,7 +86,6 @@ export function PizzaCrust(props) {
 }
 
 export function PizzaTooping(props) {
-  const { tooping, setTooping } = useContextInfo();
   return (
     <Box
       borderRadius="20px"

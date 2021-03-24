@@ -59,7 +59,7 @@ export default function Summery(props) {
             Total
           </Box>
           <Box fontSize="20px" fontWeight={300}>
-            ${totalPrice}.00
+            ${totalPrice.toFixed(2)}
           </Box>
         </Flex>
       </Box>

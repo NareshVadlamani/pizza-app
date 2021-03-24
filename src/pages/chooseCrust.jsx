@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "@emotion/styled";
-import { Footer, TopArea, TopBar } from "../components/appBg";
-import { Box, Button, Flex, Img, Text } from "../components/utils";
+import { Footer, TopArea } from "../components/appBg";
+import { Box, Flex, Text } from "../components/utils";
 import PizzaTopImg from "../components/pizzaTopImg";
-import { PizzaCrust, PizzaSizeCard } from "../components/pizzaSizeCard";
+import { PizzaCrust } from "../components/pizzaSizeCard";
 import { useContextInfo } from "../components/context";
 
 const H1 = styled.h1`
@@ -72,10 +72,7 @@ export default function ChooseCrust(props) {
           </Box>
         </TopArea>
         <Box height="200px">
-          <PizzaTopImg
-            size={crustSize}
-            setSize={(size) => setCrustSize(size)}
-          />
+          <PizzaTopImg size={crustSize} />
         </Box>
         <Box position="" p="10px 20px">
           <PizzaCrust />
