@@ -1,7 +1,11 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
 import { useContextInfo } from "./context";
-import { Box, Flex, Button, Text } from "./utils";
+import { Box, Flex, Button, Text, Img } from "./utils";
+import { ReactComponent as IconTick } from "../icons/tick.svg";
+
+const mushRoom = require("../images/mushrooms.png");
+const pepperoni = require("../images/pepperoni.png");
 
 const StyeledBtn = styled(Button)`
   background: ${(props) =>
@@ -86,7 +90,7 @@ export function PizzaCrust(props) {
 }
 
 export function PizzaTooping(props) {
-  const { crust, setCrust } = useContextInfo();
+  const { tooping, setTooping } = useContextInfo();
   return (
     <Box
       borderRadius="20px"
@@ -94,20 +98,17 @@ export function PizzaTooping(props) {
         boxShadow: "0px 4px 15px rgba(218, 218, 229, 0.2)",
       }}
       bg="#fff"
-      p="30px 0px"
+      height="160px"
     >
-      <Box py={2} color="#6D6E9C">
-        <Text style={{ fontSize: "20px" }}>Choose your </Text>{" "}
-        <Text style={{ fontSize: "20px", fontWeight: 700 }}>crust</Text>
+      <Box py="20px" color="#6D6E9C">
+        <Box>
+          <Text style={{ fontSize: "20px" }}>Choose up to </Text>{" "}
+          <Text style={{ fontSize: "20px", fontWeight: 700 }}>7 toppings</Text>
+        </Box>
+        <Box fontSize="10px" color="#A0A8CC">
+          Free 3 add-ons
+        </Box>
       </Box>
-      <Flex py={2} justifyContent="space-around">
-        <StyeledBtn active={crust == "Thin"} onClick={() => setCrust("Thin")}>
-          Thin
-        </StyeledBtn>
-        <StyeledBtn active={crust == "Thick"} onClick={() => setCrust("Thick")}>
-          Thick
-        </StyeledBtn>
-      </Flex>
     </Box>
   );
 }

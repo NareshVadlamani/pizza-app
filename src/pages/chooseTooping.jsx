@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "@emotion/styled";
 import { Footer, TopArea, TopBar } from "../components/appBg";
 import { Box, Button, Flex, Img, Text } from "../components/utils";
 import PizzaTopImg from "../components/pizzaTopImg";
-import { PizzaCrust, PizzaSizeCard } from "../components/pizzaSizeCard";
+import {
+  PizzaCrust,
+  PizzaSizeCard,
+  PizzaTooping,
+} from "../components/pizzaSizeCard";
 import { useContextInfo } from "../components/context";
-
-const thinPizza = require("../images/pizza.png");
-const thickPizza = require("../images/thickPizza.png");
+import ToopingCard from "../components/toopingCard";
 
 const H1 = styled.h1`
   margin: 0;
@@ -17,9 +20,43 @@ const H1 = styled.h1`
 `;
 
 export default function ChooseCrust(props) {
-  const { height, children } = props;
-  const [crust, setCrust] = useState("Thin");
-  const { pizzaSize } = useContextInfo();
+  const history = useHistory();
+
+  const [crustSize, setCrustSize] = useState("+$2.00");
+  const { pizzaSize, crust } = useContextInfo();
+  const [total, setTotal] = useState();
+
+  useEffect(() => {
+    onPizzaChange();
+    updateTottal();
+  }, [crust]);
+
+  const onPizzaChange = () => {
+    if (crust == "Thin") {
+      setCrustSize("+$2.00");
+    } else {
+      setCrustSize("+$4.00");
+    }
+  };
+
+  const updateTottal = () => {
+    let newTotal;
+    if (pizzaSize == "Small") {
+      newTotal = 8;
+    } else if (pizzaSize == "Medium") {
+      newTotal = 10;
+    } else {
+      newTotal = 12;
+    }
+    if (crust == "Thin") {
+      newTotal = newTotal + 2;
+    } else {
+      newTotal = newTotal + 4;
+    }
+
+    setTotal(newTotal);
+  };
+
   return (
     <Box>
       <Box bg="#E5E5E5">
@@ -30,25 +67,37 @@ export default function ChooseCrust(props) {
             }}
           >
             <H1 weight={300}>Create Your Pizza</H1>
-            <H1 weight={700}>$10.00</H1>
+            <H1 weight={700}>${total}.00</H1>
           </Flex>
           <Box textAlign="left" color="#FFFFFF4D">
             <Text style={{ color: "#fff", fontWeight: "bold" }}>
               {pizzaSize}
             </Text>
-            , crust, toppings
+            , <Text style={{ color: "#fff", fontWeight: "bold" }}>{crust}</Text>
+            , toppings
           </Box>
         </TopArea>
         <Box height="200px">
-          <PizzaTopImg img={crust == "Thin" ? thinPizza : thickPizza} />
+          <PizzaTopImg size={0} setSize={(size) => setCrustSize(size)} />
         </Box>
-        <Box position="" p="10px 20px">
-          <PizzaCrust crust={crust} onSizeChange={(val) => setCrust(val)} />
+        <Box position="relative">
+          <Box position="" p="10px 20px">
+            <PizzaTooping />
+          </Box>
+          <Box position="relative" top="-110px">
+            <ToopingCard />
+          </Box>
         </Box>
       </Box>
       <Footer>
-        <Box color="white" fontWeight="bold" fontSize="15px" py="21px">
-          Next
+        <Box
+          color="white"
+          fontWeight="bold"
+          fontSize="15px"
+          py="21px"
+          onClick={() => history.push("/summery")}
+        >
+          Done
         </Box>
       </Footer>
     </Box>

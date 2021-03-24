@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "@emotion/styled";
 import { Footer, TopArea, TopBar } from "../components/appBg";
@@ -17,7 +17,41 @@ const H1 = styled.h1`
 export default function ChooseCrust(props) {
   const history = useHistory();
 
-  const { pizzaSize } = useContextInfo();
+  const [crustSize, setCrustSize] = useState("+$2.00");
+  const { pizzaSize, crust } = useContextInfo();
+  const [total, setTotal] = useState();
+
+  useEffect(() => {
+    onPizzaChange();
+    updateTottal();
+  }, [crust]);
+
+  const onPizzaChange = () => {
+    if (crust == "Thin") {
+      setCrustSize("+$2.00");
+    } else {
+      setCrustSize("+$4.00");
+    }
+  };
+
+  const updateTottal = () => {
+    let newTotal;
+    if (pizzaSize == "Small") {
+      newTotal = 8;
+    } else if (pizzaSize == "Medium") {
+      newTotal = 10;
+    } else {
+      newTotal = 12;
+    }
+    if (crust == "Thin") {
+      newTotal = newTotal + 2;
+    } else {
+      newTotal = newTotal + 4;
+    }
+
+    setTotal(newTotal);
+  };
+
   return (
     <Box>
       <Box bg="#E5E5E5">
@@ -28,7 +62,7 @@ export default function ChooseCrust(props) {
             }}
           >
             <H1 weight={300}>Create Your Pizza</H1>
-            <H1 weight={700}>$10.00</H1>
+            <H1 weight={700}>${total}.00</H1>
           </Flex>
           <Box textAlign="left" color="#FFFFFF4D">
             <Text style={{ color: "#fff", fontWeight: "bold" }}>
@@ -38,7 +72,10 @@ export default function ChooseCrust(props) {
           </Box>
         </TopArea>
         <Box height="200px">
-          <PizzaTopImg />
+          <PizzaTopImg
+            size={crustSize}
+            setSize={(size) => setCrustSize(size)}
+          />
         </Box>
         <Box position="" p="10px 20px">
           <PizzaCrust />

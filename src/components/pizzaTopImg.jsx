@@ -3,13 +3,12 @@ import { Box, Flex, Img, Button } from "../components/utils";
 import { useContextInfo } from "./context";
 const thinPizza = require("../images/pizza.png");
 const thickPizza = require("../images/thickPizza.png");
+const halfPizza = require("../images/halfPizza.png");
 
 export default function PizzaTopImg(props) {
-  const { img } = props;
+  const { size } = props;
 
   const [imgPadding, setImgPadding] = useState([30, 25]);
-  const [size, setSize] = useState(12);
-
   const { pizzaSize, crust } = useContextInfo();
 
   useEffect(() => {
@@ -19,13 +18,10 @@ export default function PizzaTopImg(props) {
   const onPizzaChange = () => {
     if (pizzaSize == "Small") {
       setImgPadding([40, 30]);
-      setSize(10);
     } else if (pizzaSize == "Medium") {
       setImgPadding([30, 25]);
-      setSize(12);
     } else {
       setImgPadding([20, 15]);
-      setSize(14);
     }
   };
 
@@ -35,7 +31,7 @@ export default function PizzaTopImg(props) {
       top="150px"
       width="100%"
       bg="#0000000"
-      borderBottom="0.5px solid #DADAE5"
+      borderBottom={size ? "0.5px solid #DADAE5" : "0px"}
       p={imgPadding[0]}
       style={{
         boxSizing: "border-box",
@@ -65,27 +61,88 @@ export default function PizzaTopImg(props) {
         </Box>
       </Box>
 
-      <Flex
-        justifyContent="center"
+      {!!size && (
+        <Flex
+          justifyContent="center"
+          style={{
+            position: "absolute",
+            right: 0,
+            left: 0,
+            bottom: "-18px",
+          }}
+        >
+          <Box px="10px ">
+            <Button
+              style={{
+                background: "#DADAE5",
+                backdropFilter: "blur(4px)",
+                borderRadius: "10px",
+              }}
+            >
+              {size}
+            </Button>
+          </Box>
+        </Flex>
+      )}
+    </Box>
+  );
+}
+
+export function HalfPizzaImg(props) {
+  const { size } = props;
+
+  const [imgPadding, setImgPadding] = useState([30, 25]);
+  const { pizzaSize, crust } = useContextInfo();
+
+  useEffect(() => {
+    onPizzaChange();
+  }, [pizzaSize]);
+
+  const onPizzaChange = () => {
+    if (pizzaSize == "Small") {
+      setImgPadding([40, 30]);
+    } else if (pizzaSize == "Medium") {
+      setImgPadding([30, 25]);
+    } else {
+      setImgPadding([20, 15]);
+    }
+  };
+
+  return (
+    <Box
+      position="absolute"
+      top="150px"
+      width="100%"
+      bg="#0000000"
+      borderBottom={size ? "0.5px solid #DADAE5" : "0px"}
+      p={imgPadding[0]}
+      style={{
+        boxSizing: "border-box",
+        borderBottomLeftRadius: "50%",
+        borderBottomRightRadius: "50%",
+      }}
+    >
+      <Box
+        bg="#ffffff99"
+        borderRadius="50%"
+        mx="auto"
+        p={imgPadding[1]}
+        border="1px solid #DADAE5"
         style={{
-          position: "absolute",
-          right: 0,
-          left: 0,
-          bottom: "-18px",
+          backdropFilter: "blur(10px)",
         }}
       >
-        <Box width="50px">
-          <Button
+        <Box mx="auto" borderRadius="50%" bg="#fff" border="1px solid #DADAE5">
+          <Img
+            width="100%"
+            src={halfPizza}
             style={{
-              background: "#DADAE5",
-              backdropFilter: "blur(4px)",
-              borderRadius: "10px",
+              filter:
+                "drop-shadow(0px 20px 50px rgba(255, 126, 32, 0.2)), drop-shadow(0px 4px 8px rgba(109, 110, 156, 0.4))",
             }}
-          >
-            {size}
-          </Button>
+          ></Img>
         </Box>
-      </Flex>
+      </Box>
     </Box>
   );
 }
