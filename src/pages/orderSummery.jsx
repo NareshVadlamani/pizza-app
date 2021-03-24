@@ -7,6 +7,7 @@ import { HalfPizzaImg } from "../components/pizzaTopImg";
 import { useContextInfo } from "../components/context";
 
 import { ReactComponent as IconPizza } from "../icons/pizza.svg";
+import Summery from "../components/summery";
 
 const H1 = styled.h1`
   margin: 0;
@@ -36,8 +37,12 @@ export default function ChooseCrust(props) {
             </Box>
           </Box>
         </TopArea>
-        <Box height="200px">
+        {/* <Box position="relative"></Box> */}
+        <Box height="500px">
           <HalfPizzaImg size={0} />
+        </Box>
+        <Box position="absolute" top={360}>
+          <Summery />
         </Box>
       </Box>
       <Footer>
@@ -46,9 +51,9 @@ export default function ChooseCrust(props) {
           fontWeight="bold"
           fontSize="15px"
           py="21px"
-          onClick={() => history.push("/topping")}
+          onClick={() => history.push("/checkout")}
         >
-          Confirm Order
+          Confirm Pizza
         </Box>
       </Footer>
     </Box>

@@ -112,36 +112,49 @@ export function HalfPizzaImg(props) {
     <Box
       position="absolute"
       top="150px"
-      width="100%"
-      bg="#0000000"
+      // width="100%"
+      right={0}
+      bg="#0000"
       borderBottom={size ? "0.5px solid #DADAE5" : "0px"}
-      p={imgPadding[0]}
+      p="30px 0px 30px 30px"
       style={{
         boxSizing: "border-box",
         borderBottomLeftRadius: "50%",
-        borderBottomRightRadius: "50%",
+        borderTopLeftRadius: "50%",
       }}
     >
       <Box
         bg="#ffffff99"
-        borderRadius="50%"
         mx="auto"
-        p={imgPadding[1]}
+        p="25px 0px 25px 25px"
         border="1px solid #DADAE5"
+        borderRadius="1200px 0 0 1200px"
         style={{
           backdropFilter: "blur(10px)",
         }}
       >
-        <Box mx="auto" borderRadius="50%" bg="#fff" border="1px solid #DADAE5">
-          <Img
-            width="100%"
-            src={halfPizza}
-            style={{
-              filter:
-                "drop-shadow(0px 20px 50px rgba(255, 126, 32, 0.2)), drop-shadow(0px 4px 8px rgba(109, 110, 156, 0.4))",
-            }}
-          ></Img>
-        </Box>
+        <Flex bg="#fff" borderRadius="1200px 0 0 1200px">
+          <Box flex={1} borderRadius="1200px 0 0 1200px" height="500px">
+            <Img
+              width="100%"
+              src={halfPizza}
+              style={{
+                filter:
+                  "drop-shadow(0px 20px 50px rgba(255, 126, 32, 0.2)), drop-shadow(0px 4px 8px rgba(109, 110, 156, 0.4))",
+              }}
+            ></Img>
+          </Box>
+          {/* <Box flex={1} borderRadius="50%">
+            <Img
+              width="100%"
+              src={halfPizza}
+              style={{
+                filter:
+                  "drop-shadow(0px 20px 50px rgba(255, 126, 32, 0.2)), drop-shadow(0px 4px 8px rgba(109, 110, 156, 0.4))",
+              }}
+            ></Img>
+          </Box> */}
+        </Flex>
       </Box>
     </Box>
   );

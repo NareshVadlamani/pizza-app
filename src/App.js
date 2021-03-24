@@ -4,17 +4,14 @@ import { Route, Switch, BrowserRouter } from "react-router-dom";
 import logo from "./logo.svg";
 import "./App.css";
 import { PizzaContext } from "./components/context";
-// import ChooseSize from "./pages/chooseSize";
-// import ChooseCrust from "./pages/chooseCrust";
-import { Footer, TopBar } from "./components/appBg";
+import { TopBar } from "./components/appBg";
 import { Box } from "./components/utils";
 
 const ChooseSize = lazy(() => import("./pages/chooseSize"));
 const ChooseCrust = lazy(() => import("./pages/chooseCrust"));
 const ChooseTooping = lazy(() => import("./pages/chooseTooping"));
 const OrderSummery = lazy(() => import("./pages/orderSummery"));
-
-// const Register = lazy(() => import("./components/register.js"));
+const Checkout = lazy(() => import("./pages/checkout"));
 
 const Loading = () => <div>Loading ...</div>;
 const NoMatch = (props) => <h2>Url not found - {props.location.pathname}</h2>;
@@ -44,6 +41,7 @@ export default function App() {
                 <Route exact path="/crust" component={ChooseCrust} />
                 <Route exact path="/topping" component={ChooseTooping} />
                 <Route exact path="/summery" component={OrderSummery} />
+                <Route exact path="/checkout" component={Checkout} />
 
                 <Route component={NoMatch} />
               </Switch>

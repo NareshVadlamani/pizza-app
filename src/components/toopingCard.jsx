@@ -47,10 +47,11 @@ export default function ToopingCard(props) {
         justifyContent: "center",
       }}
     >
-      {toopingList.map((topping) => {
+      {toopingList.map((topping, i) => {
         const { src, name, price } = topping;
         return (
           <Flex
+            key={i}
             mx={2}
             border="0.5px solid #DADAE5"
             style={{
